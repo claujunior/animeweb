@@ -33,12 +33,13 @@ function Search() {
   return (
     <div className="search">
       <input
+        id="search"
         type="text"
         placeholder="Search..."
         value={termo}
         onChange={(e) => setTermo(e.target.value)}
       />
-      <div className="results">
+      <div className="results" id="results">
         {resultados.map((anime) => (
             <Link
                 key={anime.node.id}
