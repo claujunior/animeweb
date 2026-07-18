@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Outfit:wght@500;600;700;800&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent: #e05c7a;
+  --accent-strong: #c2415f;
+  --accent-soft: rgba(224, 92, 122, 0.15);
+
+  --bg: #0a090d;
+  --surface: #131217;
+  --surface-2: #1a191f;
+  --surface-3: #232128;
+  --border: #211f26;
+  --border-2: #2f2b35;
+
+  --text-primary: #f1eff4;
+  --text-secondary: #9b95a6;
+  --text-muted: #635d6e;
+
+  --radius-sm: 3px;
+  --radius: 4px;
+  --radius-lg: 6px;
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.6);
+
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* NAVBAR */
+
+.navbar {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(10, 9, 13, 0.85);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.logo-red {
+  color: var(--accent);
+}
+
+.menu {
+  display: flex;
+  gap: 6px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  transition: color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+
+.menu a:hover {
+  color: var(--text-primary);
+  background: var(--surface-2);
+}
