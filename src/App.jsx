@@ -1,17 +1,23 @@
 import { useState } from 'react'
 import Navbar from './components/nav/navbar'
 import { Routes, Route } from 'react-router-dom'
-import Login from './components/login'
-import Cadastro from './components/cadastro'
+import { lazy, Suspense } from 'react'
 function App() {
-  const [count, setCount] = useState(0)
 
+  const Login = lazy(() => import('./components/login'))
+  const Cadastro = lazy(() => import('./components/cadastro'))
+  
   return (
-    <Routes>
-      <Route path="/animes" element={<Navbar />} />
-      <Route path="/login" element={<><Navbar /><Login /></>} />
-      <Route path="*" element={<><Navbar /><Cadastro /></>} />
-    </Routes>
+     <>
+      <Navbar />
+      <Suspense fallback={<div>Carregando...</div>}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="*" element={<Cadastro />} />
+        </Routes>
+      </Suspense>
+    </>
     )
 }
 
