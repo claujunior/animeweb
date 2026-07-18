@@ -1,17 +1,19 @@
-import { useState } from 'react'
+import { useState,useRef } from 'react'
 import { cadastroapi} from '../api/users'
 import { useNavigate } from 'react-router-dom'
 
 function Cadastro() {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [password1, setPassword1] = useState("")
+
     const [alerta, setAlerta] = useState("")
     const navigate = useNavigate()
-    
+    const usernameRef = useRef(null)
+    const passwordRef = useRef(null)
+    const passwordRef1 = useRef(null)
     async function handleSubmit(e) {
     e.preventDefault() 
-
+    const username = usernameRef.current.value
+    const password = passwordRef.current.value
+    const password1 = passwordRef1.current.value
     if (!username || !password) {
         setAlerta("Preencha usuário e senha")
         return
@@ -23,33 +25,17 @@ function Cadastro() {
     try {
         const data = await cadastroapi(username, password);
         alert("Cadastro feito.");
-        navigate('/animes') 
+        navigate('/login') 
     } catch (err) {
         setAlerta(err.message);
     }
     }
     return (
         <form className="login" onSubmit={handleSubmit}>
-            <h1>Login</h1>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Repeat Password"
-                value={password1}
-                onChange={(e) => setPassword1(e.target.value)}
-            />
-
+            <h1>Cadastro</h1>
+            <input ref={usernameRef} type="text" placeholder="Username" />
+            <input ref={passwordRef} type="password" placeholder="Password" />
+            <input ref={passwordRef1} type="password" placeholder="Repeat Password" />
             <button type="submit">Cadastrar</button>
             {alerta && <p id="alerta">{alerta}</p>}
         </form>

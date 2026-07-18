@@ -15,9 +15,9 @@ function Navbar({ logado, setLogado}) {
         {logado && <Link to="/perfil">Perfil</Link>}
         {!logado && <Link to="/login">Login</Link>}
         {!logado && <Link to="/cadastro">Cadastro</Link>}
-        <Link to="/login" onClick={handleLogout}>
+        {logado && <Link to="/login" onClick={handleLogout}>
         Logout
-        </Link>
+        </Link>}
       </nav>
       <Search/>
     </header>
