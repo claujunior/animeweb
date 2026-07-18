@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
 import Search from "./search.jsx"
+import { memo } from 'react'
+function Navbar({ logado, setLogado}) {
 
-function Navbar() {
-  const logado = document.cookie
-  .split("; ")
-  .find(row => row.startsWith("token="))
-  ?.split("=")[1];
-
-
+  function handleLogout(){
+    document.cookie = "token=; path=/; max-age=0"
+    setLogado(false)
+  }
   return (
     <header className="navbar">
     <div className="logo"><span className="logo-red">Ani</span>lib</div>
@@ -16,14 +15,16 @@ function Navbar() {
         {logado && <Link to="/perfil">Perfil</Link>}
         {!logado && <Link to="/login">Login</Link>}
         {!logado && <Link to="/cadastro">Cadastro</Link>}
-        {logado && <Link to="/logout">Logout</Link>}
+        <Link to="/login" onClick={handleLogout}>
+        Logout
+        </Link>
       </nav>
       <Search/>
     </header>
     )
 }
 
-export default Navbar
+export default memo(Navbar)
 
 
 

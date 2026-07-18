@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useState,useRef } from 'react'
 import { login } from '../api/users'
 import { useNavigate } from 'react-router-dom'
 
-function Login() {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+function Login({setLogado}) {
     const [alerta, setAlerta] = useState("")
     const navigate = useNavigate()
-    
+    const usernameRef = useRef(null)
+    const passwordRef = useRef(null)
     async function handleSubmit(e) {
     e.preventDefault() 
+    const username = usernameRef.current.value
+    const password = passwordRef.current.value
 
     if (!username || !password) {
         setAlerta("Preencha usuário e senha")
@@ -18,6 +19,7 @@ function Login() {
     try {
         const data = await login(username, password);
         document.cookie = `token=${data.access_token}; path=/; max-age=86400`;
+        setLogado(true)
         alert("login feito.");
         navigate('/animes')
     
@@ -27,23 +29,13 @@ function Login() {
     }
     }
     return (
-        <form className="login" onSubmit={handleSubmit}>
-            <h1>Login</h1>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit">Entrar</button>
-            {alerta && <p id="alerta">{alerta}</p>}
-        </form>
+    <form className="login" onSubmit={handleSubmit}>
+      <h1>Login</h1>
+      <input ref={usernameRef} type="text" placeholder="Username" />
+      <input ref={passwordRef} type="password" placeholder="Password" />
+      <button type="submit">Entrar</button>
+      {alerta && <p id="alerta">{alerta}</p>}
+    </form>
   )
 }
 
