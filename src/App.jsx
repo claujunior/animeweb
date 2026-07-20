@@ -3,6 +3,7 @@ import Navbar from './components/nav/navbar'
 import { Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Dashboard from './components/initpage/dashboard'
+import Conteudo from './components/animepage/conteudo'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login setLogado={setLogado}/>} />
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/anime/:id" element={<Conteudo />} />
           <Route path="*" element={<Dashboard />} />
         </Routes>
       </Suspense>

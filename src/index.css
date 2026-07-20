@@ -364,3 +364,227 @@ a.card h3 {
   border-color: var(--accent);
   color: var(--text-primary);
 }
+.anime-banner {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.anime-banner img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0;
+
+  animation: bannerSlide 20s infinite;
+
+  filter: brightness(0.4);
+}
+
+.anime-banner img:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.anime-banner img:nth-child(2) {
+  animation-delay: 4s;
+}
+
+.anime-banner img:nth-child(3) {
+  animation-delay: 8s;
+}
+
+.anime-banner img:nth-child(4) {
+  animation-delay: 12s;
+}
+
+.anime-banner img:nth-child(5) {
+  animation-delay: 16s;
+}
+
+@keyframes bannerSlide {
+
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.anime-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 9, 13, 0.35),
+    var(--bg)
+  );
+}
+
+/* CONTEUDO */
+
+.anime-content {
+  width: 90%;
+  max-width: 1400px;
+  margin: -180px auto 0;
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  gap: 50px;
+}
+
+/* POSTER */
+
+.anime-poster img {
+  width: 320px;
+  border-radius: var(--radius-lg);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.5);
+}
+
+/* INFO */
+
+.anime-info {
+  flex: 1;
+}
+
+.anime-info h1 {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+/* META */
+
+.anime-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.anime-meta span {
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  font-size: .9rem;
+  color: var(--text-primary);
+}
+
+.anime-meta .meta-label {
+  font-family: var(--font-display);
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 4px;
+}
+
+/* GENEROS */
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.genre {
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-size: .82rem;
+  font-weight: 500;
+}
+
+/* SINOPSE */
+
+.synopsis {
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  font-size: 1rem;
+  max-width: 70ch;
+}
+
+/* DETAILS */
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 14px;
+}
+
+.detail-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: var(--radius);
+  transition: border-color 0.15s;
+}
+
+.detail-card:hover {
+  border-color: var(--border-2);
+}
+
+.detail-card h3 {
+  font-family: var(--font-display);
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.detail-card p {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 900px) {
+
+  .anime-content {
+    flex-direction: column;
+    margin-top: -100px;
+  }
+
+  .anime-poster img {
+    width: 220px;
+  }
+
+  .anime-info h1 {
+    font-size: 2.5rem;
+  }
+
+}
